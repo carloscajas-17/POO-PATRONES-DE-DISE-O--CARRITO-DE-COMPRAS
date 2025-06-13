@@ -25,19 +25,19 @@ public class Carritoview extends JFrame {
         setSize(700, 450);
         setLocationRelativeTo(null);
 
-        // Personaliza la tabla visualmente
+
         tableCarrito.setFont(new Font("Courier New", Font.PLAIN, 14));
         tableCarrito.getTableHeader().setFont(new Font("Courier New", Font.BOLD, 15));
         tableCarrito.setRowHeight(28);
 
-        // Personaliza botones
+
         Font fontBtn = new Font("Courier New", Font.BOLD, 14);
         btnAgregar.setFont(fontBtn);
         btnEliminar.setFont(fontBtn);
         btnPagar.setFont(fontBtn);
         btnAplicarDescuento.setFont(fontBtn);
 
-        // Modelo de la tabla
+
         DefaultTableModel model = new DefaultTableModel(
                 new Object[]{"Código", "Nombre", "Precio", "Cantidad", "Subtotal"}, 0
         );
@@ -45,7 +45,7 @@ public class Carritoview extends JFrame {
 
         labelTotal.setText("Total: $0.00");
 
-        // Evento: Agregar producto ficticio (solo ejemplo)
+
         btnAgregar.addActionListener(e -> {
             String codigo = JOptionPane.showInputDialog(this, "Código:");
             String nombre = JOptionPane.showInputDialog(this, "Nombre:");
@@ -56,7 +56,7 @@ public class Carritoview extends JFrame {
             recalcularTotal(model);
         });
 
-        // Evento: Eliminar producto seleccionado
+
         btnEliminar.addActionListener(e -> {
             int fila = tableCarrito.getSelectedRow();
             if (fila != -1) {
@@ -65,7 +65,7 @@ public class Carritoview extends JFrame {
             }
         });
 
-        // Evento: Aplicar descuento
+
         btnAplicarDescuento.addActionListener(e -> {
             try {
                 descuento = Double.parseDouble(txtDescuento.getText());
@@ -75,7 +75,7 @@ public class Carritoview extends JFrame {
             }
         });
 
-        // Evento: Pagar (muestra en consola y mensaje)
+
         btnPagar.addActionListener(e -> {
             imprimirCarritoEnConsola(model);
             JOptionPane.showMessageDialog(this,
