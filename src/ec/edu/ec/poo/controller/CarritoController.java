@@ -17,7 +17,7 @@ public class CarritoController {
         this.carritoView = carritoView;
         this.productoDAO = productoDAO;
 
-        // Inicializar modelo de tabla
+
         modeloTabla = new DefaultTableModel();
         modeloTabla.setColumnIdentifiers(new String[]{"Código", "Nombre", "Precio", "Cantidad"});
         carritoView.getTblProductos().setModel(modeloTabla);
