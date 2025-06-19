@@ -2,7 +2,7 @@ package ec.edu.ec.poo.vista;
 
 import javax.swing.*;
 
-public class ProductoModificarView extends JFrame {
+public class ProductoModificarView extends JInternalFrame {
     private JPanel panelPrincipal;
     private JTextField txtCodigo;
     private JTextField txtNombre;
@@ -12,10 +12,13 @@ public class ProductoModificarView extends JFrame {
 
     public ProductoModificarView() {
         setContentPane(panelPrincipal);
-        setTitle("Modificar Producto");
-        setSize(400, 250);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("MODIFICACIÓN DE PRODUCTOS");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 200);
+        setClosable(true);
+        setIconifiable(true);
+        setResizable(true);
+        //setLocationRelativeTo(null);
     }
 
     public JTextField getTxtCodigo() {

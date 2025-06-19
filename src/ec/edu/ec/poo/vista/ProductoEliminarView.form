@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ec.edu.ec.poo.vista.ProductoEliminarView">
-  <grid id="panelPrincipal" binding="panelPrincipal" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false">
+  <grid id="panelPrincipal" binding="panelPrincipal" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="300" height="150"/>
+      <xy x="20" y="20" width="400" height="220"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -25,9 +25,50 @@
         <properties/>
       </component>
 
+      <component id="lblNombre" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0"/>
+        </constraints>
+        <properties>
+          <text value="Nombre:"/>
+        </properties>
+      </component>
+
+      <component id="txtNombre" class="javax.swing.JTextField" binding="txtNombre">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="1"/>
+        </constraints>
+        <properties/>
+      </component>
+
+      <component id="lblPrecio" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0"/>
+        </constraints>
+        <properties>
+          <text value="Precio:"/>
+        </properties>
+      </component>
+
+      <component id="txtPrecio" class="javax.swing.JTextField" binding="txtPrecio">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="1"/>
+        </constraints>
+        <properties/>
+      </component>
+
+      <component id="btnBuscar" class="javax.swing.JButton" binding="btnBuscar">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="1"/>
+        </constraints>
+        <properties>
+          <text value="Buscar"/>
+        </properties>
+      </component>
+
       <component id="btnEliminar" class="javax.swing.JButton" binding="btnEliminar">
         <constraints>
-          <grid row="1" column="0" col-span="2" row-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="1"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="1"/>
         </constraints>
         <properties>
           <text value="Eliminar"/>
