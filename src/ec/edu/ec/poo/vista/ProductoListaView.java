@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
+
 public class ProductoListaView extends JInternalFrame {
 
     private JTextField txtBuscar;
@@ -18,16 +19,15 @@ public class ProductoListaView extends JInternalFrame {
 
     public ProductoListaView() {
         setContentPane(panelPrincipal);
-        setTitle("LISTADO PRODUCTOS");
+        setTitle("Listado de Productos");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
-        //setLocationRelativeTo(null);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
 
         modelo = new DefaultTableModel();
-        Object[] columnas = {"Código", "Nombre", "Precio", "Cantidad"};
+        Object[] columnas = {"Codigo", "Nombre", "Precio"};
         modelo.setColumnIdentifiers(columnas);
         tblProductos.setModel(modelo);
     }
@@ -82,7 +82,6 @@ public class ProductoListaView extends JInternalFrame {
 
     public void cargarDatos(List<Producto> listaProductos) {
         modelo.setNumRows(0);
-
         for (Producto producto : listaProductos) {
             Object[] fila = {
                     producto.getCodigo(),
@@ -91,8 +90,6 @@ public class ProductoListaView extends JInternalFrame {
             };
             modelo.addRow(fila);
         }
-
-
     }
 }
 

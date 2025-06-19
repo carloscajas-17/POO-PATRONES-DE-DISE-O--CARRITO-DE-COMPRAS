@@ -1,5 +1,6 @@
 package ec.edu.ec.poo.vista;
 
+import ec.edu.ec.poo.controller.CarritoController;
 import ec.edu.ec.poo.controller.ProductoController;
 import ec.edu.ec.poo.dao.ProductoDAO;
 import ec.edu.ec.poo.dao.imple.ProductoDAOMemoria;
@@ -11,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // Instanciamos DAO
+                // DAO
                 ProductoDAO productoDAO = new ProductoDAOMemoria();
 
-                // Instanciamos las vistas
+                // Vistas
                 MenuPrincipalView principalView = new MenuPrincipalView();
                 ProductoAnadirView productoAnadirView = new ProductoAnadirView();
                 ProductoListaView productoListaView = new ProductoListaView();
@@ -22,7 +23,7 @@ public class Main {
                 ProductoEliminarView productoEliminarView = new ProductoEliminarView();
                 CarritoAnadirView carritoAnadirView = new CarritoAnadirView();
 
-                // Instanciamos el controlador
+                // Controladores
                 ProductoController productoController = new ProductoController(
                         productoDAO,
                         productoAnadirView,
@@ -32,7 +33,12 @@ public class Main {
                         carritoAnadirView
                 );
 
-                // Listeners de menú
+                CarritoController carritoController = new CarritoController(
+                        carritoAnadirView,
+                        productoDAO
+                );
+
+                // Menú Producto - Crear
                 principalView.getMenuItemCrear().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -44,6 +50,7 @@ public class Main {
                     }
                 });
 
+                // Menú Producto - Buscar
                 principalView.getMenuItemBuscar().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -55,6 +62,7 @@ public class Main {
                     }
                 });
 
+                // Menú Producto - Eliminar
                 principalView.getMenuItemEliminar().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -66,6 +74,7 @@ public class Main {
                     }
                 });
 
+                // Menú Producto - Actualizar
                 principalView.getMenuItemActualizar().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -77,6 +86,7 @@ public class Main {
                     }
                 });
 
+                // Menú Carrito - Crear
                 principalView.getMenuItemCrearCarrito().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -88,7 +98,7 @@ public class Main {
                     }
                 });
 
-                // MOSTRAR LA VENTANA PRINCIPAL
+                // Mostrar ventana principal
                 principalView.setVisible(true);
             }
         });
