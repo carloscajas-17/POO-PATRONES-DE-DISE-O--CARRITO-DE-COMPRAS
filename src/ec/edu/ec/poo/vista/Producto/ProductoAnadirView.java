@@ -1,12 +1,12 @@
-package ec.edu.ec.poo.vista;
+package ec.edu.ec.poo.vista.Producto;
 
 import ec.edu.ec.poo.modelo.Producto;
+import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 public class ProductoAnadirView extends JInternalFrame {
 
     private JPanel panelPrincipal;
@@ -15,20 +15,45 @@ public class ProductoAnadirView extends JInternalFrame {
     private JTextField txtCodigo;
     private JButton btnAceptar;
     private JButton btnLimpiar;
+    private MensajeInternacionalizacionHandler mensaje;
+    public ProductoAnadirView(MensajeInternacionalizacionHandler mensaje) {
+        this.mensaje = mensaje;
+        initComponents();
+        configurarListeners();
+        actualizarTextos();
+    }
 
-    public ProductoAnadirView() {
-
+    private void initComponents() {
         setContentPane(panelPrincipal);
-        setTitle("Datos del Producto");
         setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        //setLocationRelativeTo(null);
-        //setVisible(true);
-        //pack();
 
+        //setResizable(false);
+        //setLocationRelativeTo(null);
+        //pack();
+    }
+
+
+    private void actualizarTextos() {
+        setTitle(mensaje.get("producto.anadir.titulo"));
+        //lblTitulo.setText(mensaje.get("producto.anadir.titulo"));
+        txtCodigo.setText(mensaje.get("codigo"));
+        txtNombre.setText(mensaje.get("nombre"));
+        txtPrecio.setText(mensaje.get("precio"));
+
+        btnAceptar.setText(mensaje.get("aceptar"));
+        btnLimpiar.setText(mensaje.get("limpiar"));
+    }
+
+    public void cambiarIdioma(String lenguaje, String pais) {
+        mensaje.setLenguaje(lenguaje, pais);
+        actualizarTextos();
+    }
+
+    private void configurarListeners() {
         btnLimpiar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

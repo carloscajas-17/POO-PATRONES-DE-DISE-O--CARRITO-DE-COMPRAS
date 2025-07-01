@@ -2,7 +2,11 @@ package ec.edu.ec.poo.controller;
 
 import ec.edu.ec.poo.dao.ProductoDAO;
 import ec.edu.ec.poo.modelo.Producto;
-import ec.edu.ec.poo.vista.*;
+import ec.edu.ec.poo.vista.Carrito.CarritoAnadirView;
+import ec.edu.ec.poo.vista.Producto.ProductoEliminarView;
+import ec.edu.ec.poo.vista.Producto.ProductoListaView;
+import ec.edu.ec.poo.vista.Producto.ProductoAnadirView;
+import ec.edu.ec.poo.vista.Producto.ProductoModificarView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -117,6 +121,13 @@ public class ProductoController {
     }
 
     public void configurarEventosCarrito() {
+
+        carritoAnadirView.getBtnBuscar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarProductoPorCodigo();
+            }
+        });
         // A futuro aquí agregarás la lógica del carrito
         // Ejemplo:
         // carritoAnadirView.getBtnAgregar().addActionListener(...);
@@ -162,6 +173,56 @@ public class ProductoController {
             productoEliminarView.mostrarMensaje("Código inválido");
         }
     }
+    private void buscarProductoModificar() {
+        // Corrección: Usar productoModificarView en lugar de productoEliminarView
+        int codigo = Integer.parseInt(productoModificarView.getTxtCodigo().getText());
+        Producto producto = productoDAO.buscarPorCodigo(codigo);
+
+        if (producto != null) {
+            productoModificarView.getTxtNombre().setText(producto.getNombre());
+            productoModificarView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+            productoModificarView.getBtnModificar().setEnabled(true);
+        } else {
+            productoModificarView.mostrarMensaje("Producto no encontrado");
+            productoModificarView.getTxtNombre().setText("");
+            productoModificarView.getTxtPrecio().setText("");
+            productoModificarView.getBtnModificar().setEnabled(false);
+        }
+    }
+    private void modificarProducto() {
+        int codigo = Integer.parseInt(productoModificarView.getTxtCodigo().getText());
+        String nombre = productoModificarView.getTxtNombre().getText().trim();
+        double precio = Double.parseDouble(productoModificarView.getTxtPrecio().getText());
+
+        if (nombre.isEmpty()) {
+            productoModificarView.mostrarMensaje("El nombre no puede estar vacío");
+            return;
+        }
+
+        if (precio <= 0) {
+            productoModificarView.mostrarMensaje("El precio debe ser mayor a 0");
+            return;
+        }
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                productoModificarView,
+                "¿Confirmas la modificación del producto?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        Producto productoActualizado = new Producto(codigo, nombre, precio);
+        productoDAO.actualizar(productoActualizado);
+        productoModificarView.mostrarMensaje("Producto actualizado correctamente");
+        productoModificarView.limpiarCampos();
+        productoModificarView.getTxtNombre().setEnabled(false);
+        productoModificarView.getTxtPrecio().setEnabled(false);
+        productoModificarView.getBtnModificar().setEnabled(false);
+    }
 
     private void eliminarProducto() {
         try {
@@ -197,6 +258,20 @@ public class ProductoController {
     private void listarProductos() {
         List<Producto> productos = productoDAO.listarTodos();
         productoListaView.cargarDatos(productos);
+    }
+
+
+    private void buscarProductoPorCodigo() {
+        int codigo = Integer.parseInt(carritoAnadirView.getTxtCodigo().getText());
+        Producto producto = productoDAO.buscarPorCodigo(codigo);
+        if (producto == null) {
+            carritoAnadirView.mostrarMensaje("No se encontro el producto");
+            carritoAnadirView.getTxtNombre().setText("");
+            carritoAnadirView.getTxtPrecio().setText("");
+        } else {
+            carritoAnadirView.getTxtNombre().setText(producto.getNombre());
+            carritoAnadirView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+        }
     }
 
 }

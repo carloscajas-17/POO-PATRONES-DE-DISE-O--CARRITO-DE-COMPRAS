@@ -1,5 +1,8 @@
 package ec.edu.ec.poo.dao.imple;
 
+
+
+
 import ec.edu.ec.poo.dao.ProductoDAO;
 import ec.edu.ec.poo.modelo.Producto;
 
@@ -34,7 +37,7 @@ public class ProductoDAOMemoria implements ProductoDAO {
     public List<Producto> buscarPorNombre(String nombre) {
         List<Producto> productosEncontrados = new ArrayList<>();
         for (Producto producto : productos) {
-            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+            if (producto.getNombre().startsWith(nombre)) {
                 productosEncontrados.add(producto);
             }
         }

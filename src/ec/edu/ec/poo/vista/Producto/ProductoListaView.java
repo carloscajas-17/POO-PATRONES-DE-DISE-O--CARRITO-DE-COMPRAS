@@ -1,12 +1,11 @@
-package ec.edu.ec.poo.vista;
-
+package ec.edu.ec.poo.vista.Producto;
 
 import ec.edu.ec.poo.modelo.Producto;
+import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
 
 public class ProductoListaView extends JInternalFrame {
 
@@ -16,20 +15,47 @@ public class ProductoListaView extends JInternalFrame {
     private JPanel panelPrincipal;
     private JButton btnListar;
     private DefaultTableModel modelo;
+    private MensajeInternacionalizacionHandler mensaje;
 
-    public ProductoListaView() {
+    public ProductoListaView(MensajeInternacionalizacionHandler mensaje) {
+        this.mensaje = mensaje;
+        initComponents();
+        actualizarTextos();
+    }
+    private void initComponents() {
         setContentPane(panelPrincipal);
-        setTitle("Listado de Productos");
-        setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
+        //setLocationRelativeTo(null);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
 
+        configurarTabla();
+    }
+
+
+    private void configurarTabla() {
         modelo = new DefaultTableModel();
-        Object[] columnas = {"Codigo", "Nombre", "Precio"};
+        Object[] columnas = {
+                mensaje.get("codigo"),
+                mensaje.get("nombre"),
+                mensaje.get("precio")
+        };
         modelo.setColumnIdentifiers(columnas);
         tblProductos.setModel(modelo);
+    }
+
+    private void actualizarTextos() {
+        setTitle(mensaje.get("producto.lista.titulo"));
+        //lblTitulo.setText(mensaje.get("producto.lista.titulo"));
+        txtBuscar.setText(mensaje.get("buscar"));
+        btnListar.setText(mensaje.get("listar"));
+    }
+
+    public void cambiarIdioma(String lenguaje, String pais) {
+        mensaje.setLenguaje(lenguaje, pais);
+        actualizarTextos();
+        configurarTabla();
     }
 
     public JTextField getTxtBuscar() {
