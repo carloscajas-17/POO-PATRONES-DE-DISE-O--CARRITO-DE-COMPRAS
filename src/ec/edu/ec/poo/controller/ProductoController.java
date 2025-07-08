@@ -273,5 +273,15 @@ public class ProductoController {
             carritoAnadirView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
         }
     }
+    public void cambiarIdiomaVistas(String lang, String country) {
+        if (productoAnadirView != null) productoAnadirView.cambiarIdioma(lang, country);
+        if (productoListaView != null) productoListaView.cambiarIdioma(lang, country);
+        if (productoEliminarView != null) productoEliminarView.cambiarIdioma(lang, country);
+        if (productoModificarView != null) productoModificarView.cambiarIdioma(lang, country);
+    }
+
+
+
+
 
 }

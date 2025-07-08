@@ -1,9 +1,8 @@
 package ec.edu.ec.poo.utils;
 
-
-
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.MissingResourceException;
 
 public class MensajeInternacionalizacionHandler {
 
@@ -11,12 +10,15 @@ public class MensajeInternacionalizacionHandler {
     private Locale locale;
 
     public MensajeInternacionalizacionHandler(String lenguaje, String pais) {
-        this.locale = new Locale(lenguaje, pais);
-        this.bundle = ResourceBundle.getBundle("mensajes", locale);
+        setLenguaje(lenguaje, pais);
     }
 
     public String get(String key) {
-        return bundle.getString(key);
+        try {
+            return bundle.getString(key);
+        } catch (MissingResourceException e) {
+            return "¡Clave no encontrada!: " + key;
+        }
     }
 
     public void setLenguaje(String lenguaje, String pais) {
@@ -28,4 +30,3 @@ public class MensajeInternacionalizacionHandler {
         return locale;
     }
 }
-

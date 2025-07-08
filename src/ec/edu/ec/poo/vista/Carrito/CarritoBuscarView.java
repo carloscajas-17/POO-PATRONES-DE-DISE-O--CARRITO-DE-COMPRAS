@@ -5,6 +5,8 @@ import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.net.URL;
 
 public class CarritoBuscarView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -28,6 +30,22 @@ public class CarritoBuscarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+        // ÍCONOS de los botones
+        URL buscarURL = CarritoBuscarView.class.getClassLoader().getResource("imagenes/buscar.png");
+        if (buscarURL != null) {
+            ImageIcon iconBuscar = new ImageIcon(new ImageIcon(buscarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscar.setIcon(iconBuscar);
+        } else {
+            System.out.println("Error al cargar buscar.png");
+        }
+
+        URL limpiarURL = CarritoBuscarView.class.getClassLoader().getResource("imagenes/limpiarcarr.png");
+        if (limpiarURL != null) {
+            ImageIcon iconLimpiar = new ImageIcon(new ImageIcon(limpiarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnLimpiar.setIcon(iconLimpiar);
+        } else {
+            System.out.println("Error al cargar limpiarcarr.png");
+        }
 
     }
 
@@ -39,6 +57,7 @@ public class CarritoBuscarView extends JInternalFrame {
 
         configurarTabla();
     }
+
 
     private void configurarTabla() {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -54,6 +73,12 @@ public class CarritoBuscarView extends JInternalFrame {
         modelo.setColumnIdentifiers(columnas);
         tblProducto.setModel(modelo);
     }
+    public void cambiarIdioma(String lenguaje, String pais) {
+        mensaje.setLenguaje(lenguaje, pais);
+        actualizarTextos();
+        configurarTabla(); // ¡Excelente! Esto también cambia las columnas.
+    }
+
 
     private void actualizarTextos() {
         setTitle(mensaje.get("carrito.buscar.titulo"));
@@ -67,11 +92,7 @@ public class CarritoBuscarView extends JInternalFrame {
         btnLimpiar.setText(mensaje.get("limpiar"));
     }
 
-    public void cambiarIdioma(String lenguaje, String pais) {
-        mensaje.setLenguaje(lenguaje, pais);
-        actualizarTextos();
-        configurarTabla();
-    }
+
 
     public JPanel getPnlPrincipal() {
         return pnlPrincipal;

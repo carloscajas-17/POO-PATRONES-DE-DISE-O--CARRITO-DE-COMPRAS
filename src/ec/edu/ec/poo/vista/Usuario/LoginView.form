@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ec.edu.ec.poo.vista.Usuario.LoginView">
   <grid id="27dc6" binding="pnlPrincipal" layout-manager="BorderLayout" hgap="15" vgap="15">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="530" height="400"/>
     </constraints>
     <properties>
       <background color="-2692360"/>
@@ -27,7 +27,7 @@
             <properties>
               <font name="Courier New" size="13" style="0"/>
               <foreground color="-16777216"/>
-              <text value="Username:"/>
+              <text value="Usuario"/>
             </properties>
           </component>
           <component id="9a2a9" class="javax.swing.JTextField" binding="txtUsuario">
@@ -45,7 +45,7 @@
             <properties>
               <font name="Courier New" size="13" style="0"/>
               <foreground color="-16777216"/>
-              <text value="Password:"/>
+              <text value="Contraseña"/>
             </properties>
           </component>
           <component id="a52bc" class="javax.swing.JPasswordField" binding="txtContrasenia">
@@ -68,7 +68,7 @@
           </component>
         </children>
       </grid>
-      <grid id="998d4" binding="pnlCentral" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="998d4" binding="pnlCentral" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties>
@@ -98,6 +98,32 @@
             </constraints>
             <properties/>
           </component>
+          <grid id="5de7f" binding="txtTitulo" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none" title=""/>
+            <children>
+              <component id="dfbad" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="b4cae" class="javax.swing.JButton" binding="btnOlvidoContrasena">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Recuperar Mi Contraseña"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
       <vspacer id="53646">

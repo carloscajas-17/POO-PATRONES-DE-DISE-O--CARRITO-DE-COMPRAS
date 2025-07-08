@@ -16,7 +16,7 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="North"/>
         <properties>
-          <background color="-2692360"/>
+          <background color="-13371144"/>
         </properties>
         <border type="etched" title-justification="2">
           <font name="Bernard MT Condensed" size="18" style="1"/>
@@ -78,7 +78,7 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties>
-          <background color="-2692360"/>
+          <background color="-4592392"/>
         </properties>
         <border type="none"/>
         <children>

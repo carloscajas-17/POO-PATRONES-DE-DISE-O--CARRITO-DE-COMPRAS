@@ -2,8 +2,10 @@ package ec.edu.ec.poo.vista.Usuario;
 import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class LoginView extends JFrame {
     private JPanel pnlPrincipal;
@@ -17,17 +19,52 @@ public class LoginView extends JFrame {
     private JLabel lblUser;
     private JLabel lblContrasenia;
     private JLabel lblTitulo;
+    private JButton btnOlvidoContrasena;
+    private JPanel txtTitulo;
     private MensajeInternacionalizacionHandler mensaje;
     private String[] codigosIdioma = {"es", "en", "fr"};
     private String idiomaSeleccionado = "es";
     private String paisSeleccionado = "EC";
+    private ActionListener listenerCambioIdioma;
 
-    public LoginView() {
-        mensaje = new MensajeInternacionalizacionHandler(idiomaSeleccionado, paisSeleccionado);
+    public LoginView(MensajeInternacionalizacionHandler mensaje) {
+        this.mensaje = mensaje;
         initComponents();
         cargarDatos();
         agregarListeners();
         actualizarTextos();
+
+        // Ícono para Iniciar Sesión
+        URL urlIniciar = LoginView.class.getClassLoader().getResource("imagenes/INICIARCESION.jpg");
+        if (urlIniciar != null) {
+            ImageIcon icono = new ImageIcon(new ImageIcon(urlIniciar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnIniciar.setIcon(icono);
+        } else {
+            System.out.println("Error al cargar INICIARCESION.jpg");
+        }
+
+// Ícono para Registrar
+        URL urlRegistrar = LoginView.class.getClassLoader().getResource("imagenes/REGISTRARUSU.png");
+        if (urlRegistrar != null) {
+            ImageIcon icono = new ImageIcon(new ImageIcon(urlRegistrar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnRegistrar.setIcon(icono);
+        } else {
+            System.out.println("Error al cargar REGISTRARUSU.png");
+        }
+
+// Ícono para ¿Olvidó su contraseña?
+        URL urlOlvido = LoginView.class.getClassLoader().getResource("imagenes/olvidemicontra.png");
+        if (urlOlvido != null) {
+            ImageIcon icono = new ImageIcon(new ImageIcon(urlOlvido).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnOlvidoContrasena.setIcon(icono);
+        } else {
+            System.out.println("Error al cargar olvidemicontra.png");
+        }
+
+    }
+
+    public LoginView() {
+
     }
 
     private void agregarListeners() {
@@ -38,6 +75,8 @@ public class LoginView extends JFrame {
             }
         });
     }
+
+
 
     private void initComponents() {
         setContentPane(pnlPrincipal);
@@ -66,21 +105,38 @@ public class LoginView extends JFrame {
 
         btnIniciar.setText(mensaje.get("iniciar"));
         btnRegistrar.setText(mensaje.get("registrar"));
+        btnOlvidoContrasena.setText(mensaje.get("login.olvido_contrasena"));
 
         cargarDatos();
 
     }
+
+
+    public void setListenerCambioIdioma(ActionListener listenerCambioIdioma) {
+        this.listenerCambioIdioma = listenerCambioIdioma;
+    }
+
 
     private void cambiarIdioma() {
         int seleccion = cbxIdioma.getSelectedIndex();
 
         if (seleccion != -1 && seleccion < codigosIdioma.length) {
             idiomaSeleccionado = codigosIdioma[seleccion];
-            paisSeleccionado = idiomaSeleccionado.equals("es") ? "EC" : idiomaSeleccionado.equals("fr") ? "FR" : "US";
+            paisSeleccionado = idiomaSeleccionado.equals("es") ? "EC" :
+                    idiomaSeleccionado.equals("fr") ? "FR" : "US";
             mensaje.setLenguaje(idiomaSeleccionado, paisSeleccionado);
             actualizarTextos();
+
+            if (listenerCambioIdioma != null) {
+                listenerCambioIdioma.actionPerformed(
+                        new ActionEvent(this, ActionEvent.ACTION_PERFORMED, idiomaSeleccionado + "_" + paisSeleccionado)
+                );
+            }
         }
     }
+
+
+
 
     public JPanel getPnlPrincipal() {
         return pnlPrincipal;
@@ -202,6 +258,21 @@ public class LoginView extends JFrame {
         this.paisSeleccionado = paisSeleccionado;
     }
 
+    public JButton getBtnOlvidoContrasena() {
+        return btnOlvidoContrasena;
+    }
+
+    public void setBtnOlvidoContrasena(JButton btnOlvidoContrasena) {
+        this.btnOlvidoContrasena = btnOlvidoContrasena;
+    }
+
+    public JPanel getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public void setTxtTitulo(JPanel txtTitulo) {
+        this.txtTitulo = txtTitulo;
+    }
 
     public void mostrarMensaje(String mensajeKey) {
         JOptionPane.showMessageDialog(this, mensaje.get(mensajeKey));

@@ -5,6 +5,8 @@ import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.net.URL;
 
 public class CarritoEliminarView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -28,6 +30,24 @@ public class CarritoEliminarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+
+        // Ícono del botón Buscar
+        URL buscarURL = CarritoEliminarView.class.getClassLoader().getResource("imagenes/buscar.png");
+        if (buscarURL != null) {
+            ImageIcon iconBuscar = new ImageIcon(new ImageIcon(buscarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscar.setIcon(iconBuscar);
+        } else {
+            System.out.println("Error al cargar buscar.png");
+        }
+
+        // Ícono del botón Eliminar
+        URL eliminarURL = CarritoEliminarView.class.getClassLoader().getResource("imagenes/eliminarcarr.png");
+        if (eliminarURL != null) {
+            ImageIcon iconEliminar = new ImageIcon(new ImageIcon(eliminarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnEliminar.setIcon(iconEliminar);
+        } else {
+            System.out.println("Error al cargar eliminarcarr.png");
+        }
     }
 
     private void actualizarTextos() {

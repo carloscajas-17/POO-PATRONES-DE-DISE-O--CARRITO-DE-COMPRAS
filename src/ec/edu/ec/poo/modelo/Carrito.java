@@ -73,6 +73,27 @@ public class Carrito {
         items.add(new ItemCarrito(producto, cantidad));
     }
 
+    public java.util.Date getFecha() {
+        return fechaCreacion.getTime();
+    }
+
+    public double getSubtotal() {
+        return calcularSubtotal();
+    }
+
+    public double getIva() {
+        return calcularIVA();
+    }
+
+    public double getTotal() {
+        return calcularTotal();
+    }
+
+    public List<ItemCarrito> getProductos() {
+        return items;
+    }
+
+
     public void eliminarProducto(int codigoProducto) {
         Iterator<ItemCarrito> it = items.iterator();
         while (it.hasNext()) {

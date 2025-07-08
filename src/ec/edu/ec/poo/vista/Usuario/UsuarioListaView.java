@@ -6,6 +6,8 @@ import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.net.URL;
 
 public class UsuarioListaView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -23,6 +25,19 @@ public class UsuarioListaView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+
+        // Ícono para Buscar Usuario
+        URL urlBuscar = UsuarioListaView.class.getClassLoader().getResource("imagenes/buscarusuarioListar.png");
+        if (urlBuscar != null) {
+            btnBuscar.setIcon(new ImageIcon(new ImageIcon(urlBuscar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        }
+
+// Ícono para Limpiar
+        URL urlLimpiar = UsuarioListaView.class.getClassLoader().getResource("imagenes/limpiarcarr.png");
+        if (urlLimpiar != null) {
+            btnLimpiar.setIcon(new ImageIcon(new ImageIcon(urlLimpiar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        }
+
     }
 
     private void initComponents() {
@@ -44,8 +59,7 @@ public class UsuarioListaView extends JInternalFrame {
         modelo.setColumnIdentifiers(columnas);
         tblDetalle.setModel(modelo);
     }
-
-    private void actualizarTextos() {
+    public void actualizarTextos() {
         setTitle(mensaje.get("usuario.lista.view"));
 
         lblTitulo.setText(mensaje.get("usuario.lista.view"));
@@ -53,6 +67,13 @@ public class UsuarioListaView extends JInternalFrame {
 
         btnBuscar.setText(mensaje.get("buscar"));
         btnLimpiar.setText(mensaje.get("limpiar"));
+
+        configurarTabla(); // 👉 También se actualizan los textos de las columnas
+    }
+
+    public void cambiarIdioma(String lang, String country) {
+        mensaje.setLenguaje(lang, country);
+        actualizarTextos();
     }
 
     public JPanel getPnlPrincipal() {

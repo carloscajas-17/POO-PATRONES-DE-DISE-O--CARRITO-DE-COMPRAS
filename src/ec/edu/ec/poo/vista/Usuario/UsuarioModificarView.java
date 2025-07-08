@@ -3,6 +3,8 @@ package ec.edu.ec.poo.vista.Usuario;
 import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
 
 public class UsuarioModificarView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -21,6 +23,22 @@ public class UsuarioModificarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponent();
         actualizarTextos();
+
+        // Ícono para el botón Modificar
+        URL urlModificar = UsuarioModificarView.class.getClassLoader().getResource("imagenes/modificarproduc.png");
+        if (urlModificar != null) {
+            ImageIcon icono = new ImageIcon(new ImageIcon(urlModificar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnModificar.setIcon(icono);
+        }
+
+// Ícono para el botón Mostrar
+        URL urlMostrar = UsuarioModificarView.class.getClassLoader().getResource("imagenes/buscar.png");
+        if (urlMostrar != null) {
+            ImageIcon icono = new ImageIcon(new ImageIcon(urlMostrar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnMostrar.setIcon(icono);
+        }
+
+
     }
 
     private void initComponent() {
@@ -42,11 +60,11 @@ public class UsuarioModificarView extends JInternalFrame {
         btnModificar.setText(mensaje.get("modificar"));
         btnMostrar.setText(mensaje.get("mostrar"));
     }
-
-    public void cambiarIdioma(String lenguaje, String pais) {
-        mensaje.setLenguaje(lenguaje, pais);
-        actualizarTextos();
+    public void cambiarIdioma(String lang, String country) {
+        mensaje.setLenguaje(lang, country);
+        actualizarTextos(); // Asegúrate de que este método existe y cambia TODO
     }
+
 
     public JPanel getPnlPrincipal() {
         return pnlPrincipal;

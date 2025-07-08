@@ -17,31 +17,35 @@ public class MiJDesktopPane extends JDesktopPane {
         g2.setColor(new Color(200, 230, 255));
         g2.fillRect(0, 0, getWidth(), getHeight());
 
+        // ===== TEXTO DE FONDO =====
+        g2.setColor(new Color(0, 51, 102)); // Azul oscuro
+        g2.setFont(new Font("SansSerif", Font.BOLD, 36));
+        String textoFondo = "TIENDA EL RINCÓN ORIGINAL";
+        FontMetrics fm = g2.getFontMetrics();
+        int textoWidth = fm.stringWidth(textoFondo);
+        g2.drawString(textoFondo, (getWidth() - textoWidth) / 2, 50);
+
         // ===== CELULAR =====
         int phoneW = 220;
         int phoneH = 400;
         int phoneX = cx - phoneW / 2;
         int phoneY = cy - 200;
 
-        // Celular cuerpo
         g2.setColor(Color.LIGHT_GRAY);
         g2.fillRoundRect(phoneX, phoneY, phoneW, phoneH, 30, 30);
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
         g2.drawRoundRect(phoneX, phoneY, phoneW, phoneH, 30, 30);
 
-        // Pantalla interna
         g2.setColor(Color.WHITE);
         g2.fillRoundRect(phoneX + 10, phoneY + 60, phoneW - 20, phoneH - 80, 20, 20);
 
-        // Botón inferior
         g2.setColor(Color.GRAY);
         g2.fillOval(cx - 10, phoneY + phoneH - 15, 20, 20);
 
         // ===== TOLDO =====
         int stripeWidth = 22;
         Color[] colores = {Color.BLUE, Color.WHITE};
-
         for (int i = 0; i < 7; i++) {
             g2.setColor(colores[i % 2]);
             g2.fillRect(phoneX + i * stripeWidth, phoneY - 30, stripeWidth, 40);
@@ -49,7 +53,6 @@ public class MiJDesktopPane extends JDesktopPane {
             g2.drawRect(phoneX + i * stripeWidth, phoneY - 30, stripeWidth, 40);
         }
 
-        // Base toldo
         g2.setColor(Color.BLUE);
         g2.fillRect(phoneX, phoneY + 10, phoneW, 10);
 
@@ -65,10 +68,9 @@ public class MiJDesktopPane extends JDesktopPane {
         int cartW = 100;
         int cartH = 60;
 
-        // Carrito
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cartX, cartY, cartW, cartH, 10, 10);
-        g2.drawLine(cartX - 30, cartY - 20, cartX, cartY + 10); // Mango
+        g2.drawLine(cartX - 30, cartY - 20, cartX, cartY + 10);
 
         g2.fillOval(cartX + 10, cartY + cartH, 15, 15);
         g2.fillOval(cartX + cartW - 25, cartY + cartH, 15, 15);
@@ -78,7 +80,6 @@ public class MiJDesktopPane extends JDesktopPane {
             g2.drawLine(x, cartY, x, cartY + cartH);
         }
 
-        // Persona
         g2.setColor(Color.BLACK);
         g2.fillOval(cartX - 80, cartY - 50, 30, 30); // Cabeza
         g2.fillRoundRect(cartX - 75, cartY - 20, 20, 50, 10, 10); // Cuerpo

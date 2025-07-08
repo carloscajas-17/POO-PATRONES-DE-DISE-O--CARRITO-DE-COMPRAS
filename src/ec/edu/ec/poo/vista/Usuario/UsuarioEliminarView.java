@@ -5,6 +5,8 @@ package ec.edu.ec.poo.vista.Usuario;
 import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
 
 public class UsuarioEliminarView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -24,6 +26,25 @@ public class UsuarioEliminarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+
+        // Ícono para Buscar Usuario
+        URL urlBuscar = UsuarioEliminarView.class.getClassLoader().getResource("imagenes/buscarusuarioListar.png");
+        if (urlBuscar != null) {
+            btnBuscar.setIcon(new ImageIcon(new ImageIcon(urlBuscar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        }
+
+// Ícono para Eliminar
+        URL urlEliminar = UsuarioEliminarView.class.getClassLoader().getResource("imagenes/eliminarproducto.png");
+        if (urlEliminar != null) {
+            btnEliminar.setIcon(new ImageIcon(new ImageIcon(urlEliminar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        }
+
+// Ícono para Cancelar
+        URL urlCancelar = UsuarioEliminarView.class.getClassLoader().getResource("imagenes/cancelarcontra.png");
+        if (urlCancelar != null) {
+            btnCancelar.setIcon(new ImageIcon(new ImageIcon(urlCancelar).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        }
+
     }
 
     private void initComponents() {
@@ -32,19 +53,25 @@ public class UsuarioEliminarView extends JInternalFrame {
         setResizable(true);
         setSize(500, 500);
     }
-
     private void actualizarTextos() {
         setTitle(mensaje.get("usuario.eliminar.titulo"));
-
         lblTitulo.setText(mensaje.get("usuario.eliminar.titulo"));
         lblUsuario.setText(mensaje.get("usuario"));
         lblAsociado.setText(mensaje.get("asociado"));
+
+        // ✅ Agregamos textos traducidos para los botones
+        btnBuscar.setText(mensaje.get("buscar"));
+        btnEliminar.setText(mensaje.get("eliminar"));
+        btnCancelar.setText(mensaje.get("cancelar"));
     }
 
-    public void cambiarIdioma(String lenguaje, String pais) {
-        mensaje.setLenguaje(lenguaje, pais);
+    public void cambiarIdioma(String lang, String country) {
+        mensaje.setLenguaje(lang, country);
         actualizarTextos();
     }
+
+
+
 
     public JPanel getPnlPrincipal() {
         return pnlPrincipal;

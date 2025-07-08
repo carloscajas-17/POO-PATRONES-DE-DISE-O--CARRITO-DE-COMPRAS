@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="pnlPrincipal" layout-manager="GridLayoutManager" row-count="6" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="512" height="400"/>
     </constraints>
     <properties>
       <background color="-2692360"/>
@@ -111,7 +111,7 @@
         <properties>
           <font name="Courier New" size="13" style="0"/>
           <foreground color="-16777216"/>
-          <text value="Carritos asociados:"/>
+          <text value="Carritos Creados"/>
         </properties>
       </component>
       <component id="592b5" class="javax.swing.JTextField" binding="txtAsociado">

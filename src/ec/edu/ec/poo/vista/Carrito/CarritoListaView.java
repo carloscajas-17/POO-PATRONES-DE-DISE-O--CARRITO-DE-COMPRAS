@@ -4,6 +4,8 @@ import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.net.URL;
 
 public class CarritoListaView extends JInternalFrame {
     private JPanel pnlPrincipal;
@@ -23,6 +25,24 @@ public class CarritoListaView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+
+        // Ícono del botón Buscar
+        URL buscarURL = CarritoListaView.class.getClassLoader().getResource("imagenes/buscarusuariolistar.png");
+        if (buscarURL != null) {
+            ImageIcon iconBuscar = new ImageIcon(new ImageIcon(buscarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscar.setIcon(iconBuscar);
+        } else {
+            System.out.println("Error al cargar buscarusuariolistar.png");
+        }
+
+        // Ícono del botón Detalle
+        URL detalleURL = CarritoListaView.class.getClassLoader().getResource("imagenes/detallecarrito.png");
+        if (detalleURL != null) {
+            ImageIcon iconDetalle = new ImageIcon(new ImageIcon(detalleURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnDetalle.setIcon(iconDetalle);
+        } else {
+            System.out.println("Error al cargar detallecarrito.png");
+        }
     }
 
     private void initComponents() {
@@ -37,15 +57,16 @@ public class CarritoListaView extends JInternalFrame {
     private void configurarTabla() {
         modelo = new DefaultTableModel();
         Object[] columnas = {
+                mensaje.get("columna.fecha"),
                 mensaje.get("columna.codigo"),
+                mensaje.get("columna.usuario"),
                 mensaje.get("columna.cantidad"),
-                mensaje.get("columna.subtotal"),
-                mensaje.get("columna.iva"),
                 mensaje.get("columna.total")
         };
         modelo.setColumnIdentifiers(columnas);
         tblCarrito.setModel(modelo);
     }
+
 
     private void actualizarTextos() {
         setTitle(mensaje.get("carrito.lista.titulo"));
@@ -53,7 +74,8 @@ public class CarritoListaView extends JInternalFrame {
         lblUsuario.setText(mensaje.get("usuario"));
 
         btnBuscar.setText(mensaje.get("buscar"));
-        btnDetalle.setText(mensaje.get("detalle"));
+        btnDetalle.setText(mensaje.get("carrito.lista.detalle")); // ✅ Esta clave SÍ está en tu .properties
+
     }
 
     public void cambiarIdioma(String lenguaje, String pais) {
@@ -86,30 +108,6 @@ public class CarritoListaView extends JInternalFrame {
         this.pnlInferior = pnlInferior;
     }
 
-    public JLabel getLblTitulo() {
-        return lblTitulo;
-    }
-
-    public void setLblTitulo(JLabel lblTitulo) {
-        this.lblTitulo = lblTitulo;
-    }
-
-    public JLabel getLblUsuario() {
-        return lblUsuario;
-    }
-
-    public void setLblUsuario(JLabel lblUsuario) {
-        this.lblUsuario = lblUsuario;
-    }
-
-    public MensajeInternacionalizacionHandler getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeInternacionalizacionHandler mensaje) {
-        this.mensaje = mensaje;
-    }
-
     public JTextField getTxtUsuario() {
         return txtUsuario;
     }
@@ -140,6 +138,30 @@ public class CarritoListaView extends JInternalFrame {
 
     public void setBtnDetalle(JButton btnDetalle) {
         this.btnDetalle = btnDetalle;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JLabel getLblUsuario() {
+        return lblUsuario;
+    }
+
+    public void setLblUsuario(JLabel lblUsuario) {
+        this.lblUsuario = lblUsuario;
+    }
+
+    public MensajeInternacionalizacionHandler getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(MensajeInternacionalizacionHandler mensaje) {
+        this.mensaje = mensaje;
     }
 
     public DefaultTableModel getModelo() {

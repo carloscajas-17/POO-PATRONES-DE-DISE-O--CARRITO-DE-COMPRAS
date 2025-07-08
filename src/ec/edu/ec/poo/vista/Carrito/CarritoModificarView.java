@@ -11,6 +11,7 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.NumberFormat;
 
 public class CarritoModificarView extends JInternalFrame {
@@ -47,6 +48,42 @@ public class CarritoModificarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+        // Ícono para btnBuscarC
+        URL buscarCarritoURL = CarritoModificarView.class.getClassLoader().getResource("imagenes/añadiractualizacarrito.png");
+        if (buscarCarritoURL != null) {
+            ImageIcon iconBuscarC = new ImageIcon(new ImageIcon(buscarCarritoURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscarC.setIcon(iconBuscarC);
+        } else {
+            System.out.println("Error al cargar añadiractualizacarrito.png");
+        }
+
+// Ícono para btnBuscarP
+        URL buscarProductoURL = CarritoModificarView.class.getClassLoader().getResource("imagenes/buscarproductoactu.png");
+        if (buscarProductoURL != null) {
+            ImageIcon iconBuscarP = new ImageIcon(new ImageIcon(buscarProductoURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscarP.setIcon(iconBuscarP);
+        } else {
+            System.out.println("Error al cargar buscarproductoactu.png");
+        }
+
+// Ícono para btnAnadir
+        URL anadirURL = CarritoModificarView.class.getClassLoader().getResource("imagenes/anadircarritmodificar.png");
+        if (anadirURL != null) {
+            ImageIcon iconAnadir = new ImageIcon(new ImageIcon(anadirURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnAnadir.setIcon(iconAnadir);
+        } else {
+            System.out.println("Error al cargar anadircarritmodificar.png");
+        }
+
+// Ícono para btnGuardar
+        URL guardarURL = CarritoModificarView.class.getClassLoader().getResource("imagenes/guardarcarr.png");
+        if (guardarURL != null) {
+            ImageIcon iconGuardar = new ImageIcon(new ImageIcon(guardarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnGuardar.setIcon(iconGuardar);
+        } else {
+            System.out.println("Error al cargar guardarcarr.png");
+        }
+
     }
 
     private void initComponents() {

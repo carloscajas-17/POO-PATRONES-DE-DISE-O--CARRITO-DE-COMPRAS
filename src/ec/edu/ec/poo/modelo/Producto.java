@@ -39,6 +39,7 @@ public class Producto {
         this.precio = precio;
     }
 
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -47,4 +48,6 @@ public class Producto {
                 ", precio=" + precio +
                 '}';
     }
+
+
 }

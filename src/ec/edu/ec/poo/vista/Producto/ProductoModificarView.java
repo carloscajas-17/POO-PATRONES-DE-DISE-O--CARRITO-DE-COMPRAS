@@ -1,6 +1,8 @@
 package ec.edu.ec.poo.vista.Producto;
 import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
 
 public class ProductoModificarView extends JInternalFrame {
     private JPanel panelPrincipal;
@@ -16,6 +18,25 @@ public class ProductoModificarView extends JInternalFrame {
         this.mensaje = mensaje;
         initComponents();
         actualizarTextos();
+
+        // Ícono para el botón Buscar
+        URL buscarURL = ProductoModificarView.class.getClassLoader().getResource("imagenes/buscarproducto.png");
+        if (buscarURL != null) {
+            ImageIcon iconBuscar = new ImageIcon(new ImageIcon(buscarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnBuscar.setIcon(iconBuscar);
+        } else {
+            System.out.println("Error al cargar buscarproducto.png");
+        }
+
+// Ícono para el botón Modificar
+        URL modificarURL = ProductoModificarView.class.getClassLoader().getResource("imagenes/modificarproduc.png");
+        if (modificarURL != null) {
+            ImageIcon iconModificar = new ImageIcon(new ImageIcon(modificarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnModificar.setIcon(iconModificar);
+        } else {
+            System.out.println("Error al cargar modificarproduc.png");
+        }
+
     }
     private void initComponents() {
         setContentPane(panelPrincipal);
@@ -26,18 +47,13 @@ public class ProductoModificarView extends JInternalFrame {
         setResizable(true);
         //setLocationRelativeTo(null);
     }
-
-
-
     private void actualizarTextos() {
         setTitle(mensaje.get("producto.modificar.titulo"));
-        //txtNombre.setText(mensaje.get("producto.modificar.titulo"));
         txtCodigo.setText(mensaje.get("codigo"));
         txtNombre.setText(mensaje.get("nombre"));
         txtPrecio.setText(mensaje.get("precio"));
 
-        btnBuscar.setText(mensaje.get("buscar"));
-        btnBuscar.setText(mensaje.get("listar"));
+        btnBuscar.setText(mensaje.get("buscar")); // ✅ SOLO buscar
         btnModificar.setText(mensaje.get("actualizar"));
     }
 

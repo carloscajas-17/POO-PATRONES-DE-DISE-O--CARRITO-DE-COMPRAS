@@ -4,8 +4,10 @@ import ec.edu.ec.poo.modelo.Producto;
 import ec.edu.ec.poo.utils.MensajeInternacionalizacionHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.List;
 public class ProductoAnadirView extends JInternalFrame {
 
@@ -21,6 +23,25 @@ public class ProductoAnadirView extends JInternalFrame {
         initComponents();
         configurarListeners();
         actualizarTextos();
+
+        // Ícono para el botón Aceptar
+        URL aceptarURL = ProductoAnadirView.class.getClassLoader().getResource("imagenes/aceptarcontra.png");
+        if (aceptarURL != null) {
+            ImageIcon iconAceptar = new ImageIcon(new ImageIcon(aceptarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnAceptar.setIcon(iconAceptar);
+        } else {
+            System.out.println("Error al cargar aceptarcontra.png");
+        }
+
+// Ícono para el botón Limpiar
+        URL limpiarURL = ProductoAnadirView.class.getClassLoader().getResource("imagenes/limpiarcarr.png");
+        if (limpiarURL != null) {
+            ImageIcon iconLimpiar = new ImageIcon(new ImageIcon(limpiarURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            btnLimpiar.setIcon(iconLimpiar);
+        } else {
+            System.out.println("Error al cargar limpiarcarr.png");
+        }
+
     }
 
     private void initComponents() {
@@ -36,22 +57,18 @@ public class ProductoAnadirView extends JInternalFrame {
         //pack();
     }
 
-
     private void actualizarTextos() {
         setTitle(mensaje.get("producto.anadir.titulo"));
-        //lblTitulo.setText(mensaje.get("producto.anadir.titulo"));
-        txtCodigo.setText(mensaje.get("codigo"));
-        txtNombre.setText(mensaje.get("nombre"));
-        txtPrecio.setText(mensaje.get("precio"));
-
         btnAceptar.setText(mensaje.get("aceptar"));
         btnLimpiar.setText(mensaje.get("limpiar"));
     }
+
 
     public void cambiarIdioma(String lenguaje, String pais) {
         mensaje.setLenguaje(lenguaje, pais);
         actualizarTextos();
     }
+
 
     private void configurarListeners() {
         btnLimpiar.addActionListener(new ActionListener() {

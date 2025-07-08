@@ -18,10 +18,15 @@ public interface UsuarioDAO {
     void eliminar(String username);
 
     boolean actualizar(Usuario usuario);
-    //void guardar(Usuario usuario);
 
     List<Usuario> listarTodos();
 
     List<Usuario> listarPorRol(Rol rol);
+
+    Usuario buscarPorEmail(String email);
+
+    Usuario buscarPorTelefono(String telefono);
+
+    Usuario buscarPorId(String id);
 
 }
