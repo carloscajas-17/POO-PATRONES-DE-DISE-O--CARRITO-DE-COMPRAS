@@ -6,7 +6,7 @@
 *Práctica de Laboratorio N.º 3*  
 *Título:* Interfaz gráfica avanzada en Java Swing con enfoque MDI, patrón MVC, DAO y principios SOLID  
 📄 [Informe técnico](https://docs.google.com/document/d/1qwa3452jh1zkwDfnyKFFldieOzutVq53deOQVhGN5AE/edit?usp=sharing)  
-🎥 [Presentación en YouTube](AQUÍ_VA_TU_LINK_DE_VIDEO)
+🎥 [Presentación en YouTube](https://youtu.be/uVT19o5FIVc?si=yQ_wOQ7icvGdiXPG)
 
 ## 🖼 Diagrama de Clase
 ![image](https://github.com/user-attachments/assets/e2bbb97e-e478-4338-b176-32c8fea1a195)
